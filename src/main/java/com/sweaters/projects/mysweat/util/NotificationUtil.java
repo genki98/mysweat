@@ -6,6 +6,6 @@ public class NotificationUtil {
 	}
 
 	public static boolean sendIdentificationCodeSMS(String cellphone, String identificationCode) {
-		return false;
+		return true;
 	}
 }

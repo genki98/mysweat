@@ -55,6 +55,8 @@ public class UserAccountController {
 			if (NotificationUtil.sendIdentificationCodeSMS(cellphone, identificationCode)) {
 				result.setSuccessful(true);
 				result.setMessage(MessageSet.REQUEST_IDENTIFICATION_CODE_SUCCESS);
+				result.setReturnObject(true);
+				result.setReturnObject(identificationCode);
 			} else {
 				result.setMessage(MessageSet.REQUEST_IDENTIFICATION_CODE_FAILED);
 			}
