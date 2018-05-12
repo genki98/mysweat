@@ -18,7 +18,7 @@ public class UserAccountController {
 
 	@RequestMapping(value = "/signup", method = RequestMethod.POST)
 	public ApiResponse signUp(String email, String name, String gender, String birthYear, String cellphone,
-		String password1, String password2) {
+	                          String password1, String password2) {
 		ApiResponse result = new ApiResponse();
 		UserAccount newUserAccount = userAccountService.signUp(email, name, gender, birthYear, cellphone, password1);
 
@@ -46,7 +46,7 @@ public class UserAccountController {
 		return result;
 	}
 
-	@RequestMapping(value = "/request_identificaion_code", method = RequestMethod.GET)
+	@RequestMapping(value = "/request_identification_code", method = RequestMethod.GET)
 	public ApiResponse requestIdentificationCode(String name, String gender, String birthYear, String cellphone) {
 		ApiResponse result = new ApiResponse();
 
@@ -67,11 +67,11 @@ public class UserAccountController {
 
 	@RequestMapping(value = "/confirm_identification_code", method = RequestMethod.GET)
 	public ApiResponse confirmIdentificationCode(String name, String gender, String birthYear, String cellphone,
-		String identificationCode) {
+	                                             String identificationCode) {
 		ApiResponse result = new ApiResponse();
 
 		boolean isCorrect = userAccountService.confirmIdentificationCode(name, gender, birthYear, cellphone,
-			identificationCode);
+				identificationCode);
 		if (isCorrect) {
 			result.setSuccessful(true);
 			result.setMessage(MessageSet.CONFIRM_IDENTIFICATION_CODE_SUCCESS);
@@ -106,7 +106,9 @@ public class UserAccountController {
 		String email = userAccountService.findEmail(identificationCode);
 		if (!email.isEmpty()) {
 			result.setSuccessful(true);
-			result.setMessage(String.format(MessageSet.FIND_EMAIL_SUCCESS, email));
+			result.setMessage(String.format(MessageSet.FIND_EMAIL_SUCCESS));
+			result.setHasReturnObject(true);
+			result.setReturnObject(email);
 		} else {
 			result.setMessage(String.format(MessageSet.FIND_EMAIL_FAILED));
 		}
