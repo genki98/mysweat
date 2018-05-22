@@ -9,6 +9,7 @@ import java.util.List;
 public class ExerciseData {
 	private String consoleId;
 	private String exerciseName;
+	private String bodyPart;
 	private String tagId;
 	private String startDateTime;
 	private long elapsedTime;
@@ -30,9 +31,12 @@ public class ExerciseData {
 		this.elapsedTime = elapsedTime;
 	}
 
-	public ExerciseData(String consoleId, String exerciseName, String tagId, String startDateTime, long elapsedTime) {
+	public ExerciseData(String consoleId, String exerciseName, String bodyPart, String tagId, String startDateTime,
+	                    long
+			                    elapsedTime) {
 		this(consoleId, tagId, startDateTime, elapsedTime);
 		this.exerciseName = exerciseName;
+		this.bodyPart = bodyPart;
 	}
 
 	public void addExerciseSetData(ExerciseSetData exerciseSetData) {

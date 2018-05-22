@@ -162,4 +162,16 @@ public class UserAccountController {
 
 		return result;
 	}
+
+	@RequestMapping(value = "/signoff", method = RequestMethod.GET)
+	public ApiResponse signOff(String userId) {
+		ApiResponse result = new ApiResponse();
+
+		userAccountService.signOff(userId);
+
+		result.setSuccessful(true);
+		result.setMessage(MessageSet.OK);
+
+		return result;
+	}
 }

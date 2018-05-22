@@ -20,16 +20,26 @@ public class ExerciseDataController {
 	ExerciseDataService exerciseDataService;
 
 	@RequestMapping(value = "/sync", method = RequestMethod.GET)
-	public ApiResponse syncExerciseData(String userId, String deviceId) {
+	public ApiResponse syncExerciseData(String userId, String appId) {
 		ApiResponse result = new ApiResponse();
 		DateTime currentDateTime = DateTime.now();
 
-		List<ExerciseBatchData> exerciseBatchDataList = exerciseDataService.syncExerciseData(userId, deviceId,
-			currentDateTime);
+		List<ExerciseBatchData> exerciseBatchDataList = exerciseDataService.syncExerciseData(userId, appId,
+				currentDateTime);
 		result.setSuccessful(true);
 		result.setMessage(MessageSet.OK);
 		result.setHasReturnObject(true);
 		result.setReturnObject(exerciseBatchDataList);
+
+		return result;
+	}
+
+	@RequestMapping(value = "/sync_ack", method = RequestMethod.GET)
+	public ApiResponse syncAck(String userId, String appId) {
+		ApiResponse result = new ApiResponse();
+
+		result.setSuccessful(true);
+		result.setMessage(MessageSet.OK);
 
 		return result;
 	}
@@ -39,7 +49,7 @@ public class ExerciseDataController {
 		ApiResponse result = new ApiResponse();
 
 		List<ExerciseBatchData> exerciseBatchDataList = exerciseDataService.getExerciseBatchDataList(userId, fromDate,
-			toDate);
+				toDate);
 		result.setSuccessful(true);
 		result.setMessage(MessageSet.OK);
 		result.setHasReturnObject(true);
@@ -63,7 +73,7 @@ public class ExerciseDataController {
 
 	@RequestMapping(value = "/set", method = RequestMethod.POST)
 	public ApiResponse setExerciseRawData(String userId, String consoleId, String tagId, String startDate,
-		String elapsedTime, String sensoredRawDataValue) {
+	                                      String elapsedTime, String sensoredRawDataValue) {
 		return new ApiResponse();
 	}
 }

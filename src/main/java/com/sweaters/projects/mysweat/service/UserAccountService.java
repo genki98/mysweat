@@ -7,8 +7,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserAccountService {
 	public UserAccount signUp(String email, String name, String gender, String birthYear, String cellphone,
-		String password) {
+	                          String password) {
 		return MockupDataUtil.getUserAccount();
+	}
+
+	public void signOff(String userId) {
 	}
 
 	public UserAccount login(String email, String password) {
@@ -24,7 +27,7 @@ public class UserAccountService {
 	}
 
 	public boolean confirmIdentificationCode(String name, String gender, String birthYear, String cellphone,
-		String identificationCode) {
+	                                         String identificationCode) {
 		return true;
 	}
 
